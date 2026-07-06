@@ -1,0 +1,8 @@
+# Configurações locais do Claude Code (não versionar)
+.claude/settings.local.json
+
+# Dependências (não há build, mas por segurança)
+node_modules/
+
+# Vercel (metadados locais do CLI)
+.vercel/

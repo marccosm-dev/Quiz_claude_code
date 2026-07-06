@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Claude Code</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Tela 1: Início -->
+  <section class="tela tela--ativa" id="tela-inicio">
+    <div class="cartao">
+      <div class="cabecalho-inicio">
+        <div class="logo-icone" aria-hidden="true">&gt;_</div>
+        <h1>Quiz Claude Code</h1>
+        <p class="subtitulo">Teste seus conhecimentos sobre a ferramenta de codificação agêntica da Anthropic.</p>
+      </div>
+
+      <p class="regras">
+        15 perguntas · 15 segundos cada · dificuldade crescente (iniciante → intermediário → avançado)
+      </p>
+
+      <form id="form-inicio">
+        <label for="input-nome">Seu nome</label>
+        <input type="text" id="input-nome" maxlength="20" placeholder="Como podemos te chamar?" required />
+        <button type="submit" id="btn-comecar" class="botao botao--primario">Começar</button>
+      </form>
+
+      <button type="button" id="btn-ver-ranking" class="botao botao--secundario">Ver ranking</button>
+    </div>
+  </section>
+
+  <!-- Tela 2: Pergunta -->
+  <section class="tela" id="tela-pergunta">
+    <div class="cartao cartao--pergunta">
+      <div class="topo-pergunta">
+        <span id="progresso-numero">Pergunta 1 de 15</span>
+        <span id="indicador-nivel" class="badge-nivel">Iniciante</span>
+      </div>
+
+      <div class="timer" id="timer-container" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="timer-svg">
+          <circle class="timer-trilho" cx="50" cy="50" r="44"></circle>
+          <circle class="timer-progresso" id="timer-progresso" cx="50" cy="50" r="44"></circle>
+        </svg>
+        <span id="timer-numero" class="timer-numero">15</span>
+      </div>
+
+      <p id="placar" aria-live="polite">Pontos: 0</p>
+
+      <p id="texto-pergunta" class="texto-pergunta"></p>
+
+      <div class="botoes-resposta">
+        <button type="button" id="btn-verdadeiro" data-resp="true" class="botao botao--verdadeiro">VERDADEIRO</button>
+        <button type="button" id="btn-falso" data-resp="false" class="botao botao--falso">FALSO</button>
+      </div>
+
+      <div id="card-feedback" class="card-feedback" hidden aria-live="assertive">
+        <p id="feedback-resultado" class="feedback-resultado"></p>
+        <p id="resposta-correta-destaque" class="resposta-correta-destaque" hidden></p>
+        <p id="explicacao-texto" class="explicacao-texto"></p>
+        <p id="pontos-rodada" class="pontos-rodada" hidden></p>
+        <button type="button" id="btn-proxima" class="botao botao--primario">Próxima</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tela 3: Resultado -->
+  <section class="tela" id="tela-resultado">
+    <div class="cartao">
+      <h2>Resultado</h2>
+      <p id="resultado-resumo" class="resultado-resumo"></p>
+      <div id="patente-destaque" class="patente-destaque"></div>
+      <p id="posicao-ranking" class="posicao-ranking" hidden></p>
+
+      <div class="botoes-resultado">
+        <button type="button" id="btn-jogar-novamente" class="botao botao--primario">Jogar novamente</button>
+        <button type="button" id="btn-ver-ranking-resultado" class="botao botao--secundario">Ver ranking</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tela 4: Ranking -->
+  <section class="tela" id="tela-ranking">
+    <div class="cartao">
+      <h2>Ranking</h2>
+
+      <p id="ranking-carregando" class="ranking-carregando">Carregando ranking...</p>
+      <p id="ranking-offline-aviso" class="ranking-offline-aviso" hidden>Ranking offline — exibindo dados locais.</p>
+
+      <table id="tabela-ranking" class="tabela-ranking" hidden>
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Nome</th>
+            <th>Pontos</th>
+            <th>Acertos</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody id="ranking-corpo"></tbody>
+      </table>
+
+      <button type="button" id="btn-voltar-inicio" class="botao botao--secundario">Voltar ao início</button>
+    </div>
+  </section>
+
+  <script src="js/questions.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "quiz",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", ".", "-l", "4321"],
+      "port": 4321,
+      "autoPort": false
+    }
+  ]
+}
