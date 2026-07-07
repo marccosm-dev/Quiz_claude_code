@@ -6,3 +6,6 @@ node_modules/
 
 # Vercel (metadados locais do CLI)
 .vercel/
+
+.vercel
+.env*
