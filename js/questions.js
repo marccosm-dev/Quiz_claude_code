@@ -208,5 +208,145 @@ const QUESTIONS = [
     "texto": "Quando o contexto da conversa fica cheio, o Claude Code pode compactá-lo preservando um resumo.",
     "resposta": true,
     "explicacao": "A compactação (automática ou via /compact) resume a conversa para liberar espaço na janela de contexto sem perder o fio da tarefa."
+  },
+  {
+    "id": 31,
+    "nivel": "iniciante",
+    "texto": "O Claude Code é totalmente gratuito e não precisa de conta para usar.",
+    "resposta": false,
+    "explicacao": "É preciso uma conta Anthropic: o acesso vem com as assinaturas do Claude (Pro/Max) ou com créditos de API pagos por uso."
+  },
+  {
+    "id": 32,
+    "nivel": "iniciante",
+    "texto": "O Claude Code pode ser usado em tarefas fora da programação, como organizar arquivos e redigir documentos.",
+    "resposta": true,
+    "explicacao": "Ele é um agente de propósito geral no computador: além de código, organiza pastas, escreve e edita textos e outros arquivos."
+  },
+  {
+    "id": 33,
+    "nivel": "iniciante",
+    "texto": "É possível conversar com o Claude Code em português.",
+    "resposta": true,
+    "explicacao": "Os modelos Claude entendem e respondem em dezenas de idiomas — você pode trabalhar inteiramente em português."
+  },
+  {
+    "id": 34,
+    "nivel": "iniciante",
+    "texto": "Depois de escrever um código, o Claude Code não consegue executá-lo para verificar se funciona.",
+    "resposta": false,
+    "explicacao": "Ele pode rodar o código e os testes no terminal, ver os erros e corrigir sozinho — esse ciclo de verificação é um dos seus pontos fortes."
+  },
+  {
+    "id": 35,
+    "nivel": "iniciante",
+    "texto": "O Claude Code funciona em Windows, macOS e Linux.",
+    "resposta": true,
+    "explicacao": "Há suporte oficial para os três sistemas operacionais, incluindo Windows nativo."
+  },
+  {
+    "id": 36,
+    "nivel": "iniciante",
+    "texto": "Ao ser instalado, o Claude Code lê e envia todos os arquivos do seu computador para a Anthropic.",
+    "resposta": false,
+    "explicacao": "Ele só acessa os arquivos necessários para a tarefa, dentro da pasta de trabalho e das permissões que você concede."
+  },
+  {
+    "id": 37,
+    "nivel": "iniciante",
+    "texto": "O Claude Code pode explicar um código existente em linguagem simples, ajudando quem está aprendendo.",
+    "resposta": true,
+    "explicacao": "Pedir explicações sobre um trecho ou um projeto inteiro é um uso comum — ótimo para estudar e para entender sistemas legados."
+  },
+  {
+    "id": 38,
+    "nivel": "intermediario",
+    "texto": "É possível anexar imagens, como capturas de tela, para o Claude Code analisar.",
+    "resposta": true,
+    "explicacao": "Os modelos Claude têm visão: você pode colar um print (de um erro, de um layout) e ele analisa a imagem para trabalhar."
+  },
+  {
+    "id": 39,
+    "nivel": "intermediario",
+    "texto": "Uma vez iniciada uma resposta, não há como interromper o Claude Code até ele terminar.",
+    "resposta": false,
+    "explicacao": "A tecla Esc interrompe a ação a qualquer momento, permitindo corrigir o rumo ou dar novas instruções."
+  },
+  {
+    "id": 40,
+    "nivel": "intermediario",
+    "texto": "O comando /clear limpa o contexto da conversa para começar uma nova tarefa do zero.",
+    "resposta": true,
+    "explicacao": "O /clear zera o contexto sem fechar o programa — útil entre tarefas sem relação, para manter o foco e economizar contexto."
+  },
+  {
+    "id": 41,
+    "nivel": "intermediario",
+    "texto": "O Claude Code decide sozinho qual modelo de IA usar e o usuário não pode trocá-lo.",
+    "resposta": false,
+    "explicacao": "O comando /model permite escolher o modelo (ex: Opus, Sonnet, Haiku), equilibrando capacidade, velocidade e custo."
+  },
+  {
+    "id": 42,
+    "nivel": "intermediario",
+    "texto": "O Claude Code pode revisar um pull request e sugerir melhorias no código.",
+    "resposta": true,
+    "explicacao": "Revisão de código é um caso de uso oficial: ele analisa o diff, aponta bugs e sugere melhorias — inclusive via comandos como /review."
+  },
+  {
+    "id": 43,
+    "nivel": "intermediario",
+    "texto": "O Claude Code só funciona com repositórios hospedados no GitHub.",
+    "resposta": false,
+    "explicacao": "As operações git (commit, branch, merge) funcionam com qualquer servidor — GitHub, GitLab, Bitbucket ou um git local."
+  },
+  {
+    "id": 44,
+    "nivel": "intermediario",
+    "texto": "O Claude Code localiza trechos de código no projeto com ferramentas de busca por padrões, sem precisar abrir arquivo por arquivo.",
+    "resposta": true,
+    "explicacao": "Ele usa ferramentas de busca (por conteúdo e por nome de arquivo) para navegar com eficiência mesmo em projetos grandes."
+  },
+  {
+    "id": 45,
+    "nivel": "avancado",
+    "texto": "Subagents personalizados podem ser definidos em arquivos markdown, com instruções e ferramentas específicas.",
+    "resposta": true,
+    "explicacao": "Arquivos em .claude/agents/ definem subagents com prompt próprio e lista de ferramentas permitidas, reutilizáveis pelo time."
+  },
+  {
+    "id": 46,
+    "nivel": "avancado",
+    "texto": "Um hook do tipo PreToolUse pode bloquear uma ação do Claude Code antes de ela ser executada.",
+    "resposta": true,
+    "explicacao": "Hooks PreToolUse rodam antes da ferramenta e podem vetar a ação — útil para políticas de segurança e validações automáticas."
+  },
+  {
+    "id": 47,
+    "nivel": "avancado",
+    "texto": "Skills e slash commands personalizados valem apenas na máquina onde foram criados e não podem ser compartilhados.",
+    "resposta": false,
+    "explicacao": "Eles podem ser versionados na pasta .claude/ do repositório e distribuídos via plugins — todo o time passa a usá-los."
+  },
+  {
+    "id": 48,
+    "nivel": "avancado",
+    "texto": "No modo headless, o claude -p pode retornar a saída em formato JSON para integração com outros sistemas.",
+    "resposta": true,
+    "explicacao": "Com --output-format json, a resposta sai estruturada — ideal para scripts, pipelines e integrações programáticas."
+  },
+  {
+    "id": 49,
+    "nivel": "avancado",
+    "texto": "O protocolo MCP só funciona com produtos da Anthropic.",
+    "resposta": false,
+    "explicacao": "O MCP é um protocolo aberto adotado pela indústria: outras empresas e ferramentas de IA também o utilizam para conectar modelos a sistemas."
+  },
+  {
+    "id": 50,
+    "nivel": "avancado",
+    "texto": "Com git worktrees, é possível rodar várias sessões do Claude Code em paralelo no mesmo repositório, cada uma em uma cópia isolada.",
+    "resposta": true,
+    "explicacao": "Worktrees criam diretórios de trabalho independentes do mesmo repositório — cada sessão atua em um sem conflitar com as outras."
   }
 ];

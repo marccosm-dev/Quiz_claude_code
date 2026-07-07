@@ -1,6 +1,6 @@
 # PRD — Quiz Claude Code (Verdadeiro ou Falso)
 
-**Versão:** 1.3 · **Data:** 2026-07-02 · **Status:** Aprovado para desenvolvimento
+**Versão:** 1.4 · **Data:** 2026-07-06 · **Status:** Aprovado para desenvolvimento (v1.4: banco expandido de 30 para 50 perguntas — teto do escopo atingido)
 
 Este documento é a especificação completa do projeto e deve ser consumido pelo Claude Code para construir a aplicação do zero.
 
@@ -244,7 +244,7 @@ Consulta do top 10: `select * from ranking order by pontos desc, acertos desc, c
 
 ## 8. Banco de Perguntas (conteúdo completo)
 
-> As perguntas abaixo são o **escopo inicial** (30 perguntas) do banco JSON local. Transcrever fielmente para `js/questions.js`. O banco pode crescer até 50 perguntas mantendo o mesmo formato e o equilíbrio entre níveis.
+> As perguntas abaixo são o conteúdo oficial do banco JSON local, transcritas fielmente em `js/questions.js`: o **escopo inicial** (perguntas 1–30) e a **expansão da v1.4** (perguntas 31–50), que levou o banco ao teto de 50 (17 iniciantes, 17 intermediárias, 16 avançadas).
 
 ### Nível Iniciante (negócio/conceitos) — 10 perguntas
 
@@ -290,6 +290,41 @@ Consulta do top 10: `select * from ranking order by pontos desc, acertos desc, c
 | 28 | O CLAUDE.md só pode existir na raiz do projeto, nunca em subdiretórios ou na pasta do usuário. | **F** | Há vários níveis: global do usuário (`~/.claude/CLAUDE.md`), raiz do projeto e subdiretórios — os contextos se combinam. |
 | 29 | O Claude Agent SDK permite construir agentes personalizados usando a mesma base do Claude Code. | **V** | O Claude Agent SDK expõe o mesmo harness agêntico (ferramentas, loop, permissões) para desenvolvedores criarem seus próprios agentes. |
 | 30 | Quando o contexto da conversa fica cheio, o Claude Code pode compactá-lo preservando um resumo. | **V** | A compactação (automática ou via `/compact`) resume a conversa para liberar espaço na janela de contexto sem perder o fio da tarefa. |
+
+### Expansão v1.4 — Nível Iniciante (7 perguntas)
+
+| # | Afirmação | Resposta | Explicação |
+|---|---|---|---|
+| 31 | O Claude Code é totalmente gratuito e não precisa de conta para usar. | **F** | É preciso uma conta Anthropic: o acesso vem com as assinaturas do Claude (Pro/Max) ou com créditos de API pagos por uso. |
+| 32 | O Claude Code pode ser usado em tarefas fora da programação, como organizar arquivos e redigir documentos. | **V** | Ele é um agente de propósito geral no computador: além de código, organiza pastas, escreve e edita textos e outros arquivos. |
+| 33 | É possível conversar com o Claude Code em português. | **V** | Os modelos Claude entendem e respondem em dezenas de idiomas — você pode trabalhar inteiramente em português. |
+| 34 | Depois de escrever um código, o Claude Code não consegue executá-lo para verificar se funciona. | **F** | Ele pode rodar o código e os testes no terminal, ver os erros e corrigir sozinho — esse ciclo de verificação é um dos seus pontos fortes. |
+| 35 | O Claude Code funciona em Windows, macOS e Linux. | **V** | Há suporte oficial para os três sistemas operacionais, incluindo Windows nativo. |
+| 36 | Ao ser instalado, o Claude Code lê e envia todos os arquivos do seu computador para a Anthropic. | **F** | Ele só acessa os arquivos necessários para a tarefa, dentro da pasta de trabalho e das permissões que você concede. |
+| 37 | O Claude Code pode explicar um código existente em linguagem simples, ajudando quem está aprendendo. | **V** | Pedir explicações sobre um trecho ou um projeto inteiro é um uso comum — ótimo para estudar e para entender sistemas legados. |
+
+### Expansão v1.4 — Nível Intermediário (7 perguntas)
+
+| # | Afirmação | Resposta | Explicação |
+|---|---|---|---|
+| 38 | É possível anexar imagens, como capturas de tela, para o Claude Code analisar. | **V** | Os modelos Claude têm visão: você pode colar um print (de um erro, de um layout) e ele analisa a imagem para trabalhar. |
+| 39 | Uma vez iniciada uma resposta, não há como interromper o Claude Code até ele terminar. | **F** | A tecla Esc interrompe a ação a qualquer momento, permitindo corrigir o rumo ou dar novas instruções. |
+| 40 | O comando /clear limpa o contexto da conversa para começar uma nova tarefa do zero. | **V** | O /clear zera o contexto sem fechar o programa — útil entre tarefas sem relação, para manter o foco e economizar contexto. |
+| 41 | O Claude Code decide sozinho qual modelo de IA usar e o usuário não pode trocá-lo. | **F** | O comando /model permite escolher o modelo (ex: Opus, Sonnet, Haiku), equilibrando capacidade, velocidade e custo. |
+| 42 | O Claude Code pode revisar um pull request e sugerir melhorias no código. | **V** | Revisão de código é um caso de uso oficial: ele analisa o diff, aponta bugs e sugere melhorias — inclusive via comandos como /review. |
+| 43 | O Claude Code só funciona com repositórios hospedados no GitHub. | **F** | As operações git (commit, branch, merge) funcionam com qualquer servidor — GitHub, GitLab, Bitbucket ou um git local. |
+| 44 | O Claude Code localiza trechos de código no projeto com ferramentas de busca por padrões, sem precisar abrir arquivo por arquivo. | **V** | Ele usa ferramentas de busca (por conteúdo e por nome de arquivo) para navegar com eficiência mesmo em projetos grandes. |
+
+### Expansão v1.4 — Nível Avançado (6 perguntas)
+
+| # | Afirmação | Resposta | Explicação |
+|---|---|---|---|
+| 45 | Subagents personalizados podem ser definidos em arquivos markdown, com instruções e ferramentas específicas. | **V** | Arquivos em .claude/agents/ definem subagents com prompt próprio e lista de ferramentas permitidas, reutilizáveis pelo time. |
+| 46 | Um hook do tipo PreToolUse pode bloquear uma ação do Claude Code antes de ela ser executada. | **V** | Hooks PreToolUse rodam antes da ferramenta e podem vetar a ação — útil para políticas de segurança e validações automáticas. |
+| 47 | Skills e slash commands personalizados valem apenas na máquina onde foram criados e não podem ser compartilhados. | **F** | Eles podem ser versionados na pasta .claude/ do repositório e distribuídos via plugins — todo o time passa a usá-los. |
+| 48 | No modo headless, o claude -p pode retornar a saída em formato JSON para integração com outros sistemas. | **V** | Com --output-format json, a resposta sai estruturada — ideal para scripts, pipelines e integrações programáticas. |
+| 49 | O protocolo MCP só funciona com produtos da Anthropic. | **F** | O MCP é um protocolo aberto adotado pela indústria: outras empresas e ferramentas de IA também o utilizam para conectar modelos a sistemas. |
+| 50 | Com git worktrees, é possível rodar várias sessões do Claude Code em paralelo no mesmo repositório, cada uma em uma cópia isolada. | **V** | Worktrees criam diretórios de trabalho independentes do mesmo repositório — cada sessão atua em um sem conflitar com as outras. |
 
 ---
 

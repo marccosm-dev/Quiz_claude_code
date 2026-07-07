@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-**The app is fully implemented** per `prd.md` v1.3: `index.html`, `css/style.css`, the four `js/` modules, `supabase/schema.sql` (plus `supabase/cleanup_teste.sql` for wiping test rows), and `README.md` with setup/deploy instructions. `js/config.js` already contains real Supabase credentials (the anon key — publishable by design). There is still no `package.json` and no git repository.
+**The app is fully implemented** per `prd.md` v1.4: `index.html`, `css/style.css`, the four `js/` modules, `supabase/schema.sql` (plus `supabase/cleanup_teste.sql` for wiping test rows), and `README.md` with setup/deploy instructions. `js/config.js` already contains real Supabase credentials (the anon key — publishable by design). There is still no `package.json` and no git repository.
 
-`prd.md` (v1.3, "Aprovado para desenvolvimento") remains the **sole source of truth** for behavior: business goals, game rules, scoring, screens, visual identity, the full 30-question content bank, infrastructure/deploy, and acceptance criteria. When code and PRD disagree, treat it as a bug in one of them and reconcile — don't silently drift.
+`prd.md` (v1.4, "Aprovado para desenvolvimento") remains the **sole source of truth** for behavior: business goals, game rules, scoring, screens, visual identity, the full 50-question content bank (30 initial + 20 expansion, at the PRD's cap), infrastructure/deploy, and acceptance criteria. When code and PRD disagree, treat it as a bug in one of them and reconcile — don't silently drift.
 
 ## Running the app
 

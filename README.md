@@ -6,7 +6,7 @@ A especificação completa está em [prd.md](prd.md).
 
 ## Como funciona
 
-- **15 perguntas por partida**, sorteadas de um banco de 30 (dificuldade crescente: negócio → uso diário → recursos técnicos).
+- **15 perguntas por partida**, sorteadas de um banco de 50 (dificuldade crescente: negócio → uso diário → recursos técnicos).
 - **15 segundos** por pergunta; acerto vale `100 + segundos restantes × 10` pontos.
 - Errou ou estourou o tempo? A **resposta correta aparece destacada** com uma explicação educativa — o quiz também ensina.
 - Ao final: patente conforme seu desempenho (de 🧭 Explorador Curioso a 🏆 Mestre do Claude Code) e posição no **ranking global top 10**.
@@ -45,7 +45,7 @@ Alternativa via CLI: `npx vercel` na raiz do projeto.
 /
 ├── index.html            # As 4 telas (início, pergunta, resultado, ranking)
 ├── css/style.css         # Estilo e responsividade (tema Claude/Anthropic)
-├── js/questions.js       # Banco de perguntas em JSON local (30 itens, dados puros)
+├── js/questions.js       # Banco de perguntas em JSON local (50 itens, dados puros)
 ├── js/config.js          # URL e anon key do Supabase
 ├── js/ranking.js         # Supabase (gravar/top 10) + fallback localStorage
 ├── js/app.js             # Lógica do jogo: estado, timer, pontuação, DOM
@@ -54,11 +54,11 @@ Alternativa via CLI: `npx vercel` na raiz do projeto.
 
 ## Adicionando perguntas
 
-Edite [js/questions.js](js/questions.js) e acrescente objetos ao array `QUESTIONS` (até 50 no total, mínimo 10 por nível):
+O banco está no teto definido pelo PRD (50 perguntas). Para ir além, ajuste primeiro o limite em [prd.md](prd.md); o formato de cada item em [js/questions.js](js/questions.js) é:
 
 ```js
 {
-  "id": 31,
+  "id": 51,
   "nivel": "iniciante",            // "iniciante" | "intermediario" | "avancado"
   "texto": "Afirmação a ser julgada...",
   "resposta": true,                 // true = VERDADEIRO, false = FALSO
