@@ -336,6 +336,13 @@ input[type="text"]:focus {
   font-weight: 700;
 }
 
+.canvas-confetes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+
 @media (min-width: 480px) {
   .botoes-resposta {
     flex-direction: row;

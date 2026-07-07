@@ -1,6 +1,6 @@
 # PRD — Quiz Claude Code (Verdadeiro ou Falso)
 
-**Versão:** 1.4 · **Data:** 2026-07-06 · **Status:** Aprovado para desenvolvimento (v1.4: banco expandido de 30 para 50 perguntas — teto do escopo atingido)
+**Versão:** 1.5 · **Data:** 2026-07-06 · **Status:** Aprovado para desenvolvimento (v1.4: banco expandido de 30 para 50 perguntas — teto do escopo atingido; v1.5: confetes ao acertar)
 
 Este documento é a especificação completa do projeto e deve ser consumido pelo Claude Code para construir a aplicação do zero.
 
@@ -70,7 +70,7 @@ A aplicação é uma **SPA de tela única** com 4 estados/telas, alternadas via 
 **Após responder (ou estourar o tempo):**
 - Feedback imediato: acerto (verde) ou erro (vermelho); tempo esgotado conta como erro.
 - **Em caso de erro (ou tempo esgotado), mostrar de forma destacada qual era a resposta correta** (ex: "A resposta correta é VERDADEIRO") junto com a explicação educativa — este é o momento principal de aprendizado do quiz.
-- Em caso de acerto, mostrar a explicação e os pontos ganhos na rodada (base + bônus de tempo).
+- Em caso de acerto, mostrar a explicação e os pontos ganhos na rodada (base + bônus de tempo), com uma **animação de confetes** celebrando a resposta (implementação leve em canvas, sem bibliotecas; desativada quando o usuário prefere movimento reduzido — `prefers-reduced-motion`).
 - Botão **"Próxima"** para avançar (sem avanço automático — o usuário controla o ritmo de leitura).
 
 ### Tela 3 — Resultado

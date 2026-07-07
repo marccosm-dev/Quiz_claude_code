@@ -195,6 +195,64 @@ const App = (function () {
     exibirFeedback(acertou, pergunta, pontosGanhos);
   }
 
+  function dispararConfetes() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const CORES = ["#D97757", "#4C8055", "#C99A4A", "#6B8F9C", "#8B4B6B", "#FAF8F5"];
+    const canvas = document.createElement("canvas");
+    canvas.className = "canvas-confetes";
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+
+    const particulas = Array.from({ length: 120 }, () => ({
+      x: canvas.width / 2 + (Math.random() - 0.5) * canvas.width * 0.4,
+      y: canvas.height * 0.35,
+      vx: (Math.random() - 0.5) * 12,
+      vy: -(Math.random() * 10 + 5),
+      tamanho: Math.random() * 6 + 4,
+      cor: CORES[Math.floor(Math.random() * CORES.length)],
+      rotacao: Math.random() * Math.PI,
+      velocidadeRotacao: (Math.random() - 0.5) * 0.3,
+    }));
+
+    const DURACAO_MS = 1800;
+    const inicio = performance.now();
+
+    // Garante a remoção mesmo se o requestAnimationFrame for pausado
+    // (ex: aba em segundo plano), evitando canvases acumulados no DOM.
+    const limpezaGarantida = setTimeout(() => canvas.remove(), DURACAO_MS + 500);
+
+    function quadro(agora) {
+      const decorrido = agora - inicio;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalAlpha = Math.max(1 - decorrido / DURACAO_MS, 0);
+
+      particulas.forEach((p) => {
+        p.vy += 0.25; // gravidade
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rotacao += p.velocidadeRotacao;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotacao);
+        ctx.fillStyle = p.cor;
+        ctx.fillRect(-p.tamanho / 2, -p.tamanho / 2, p.tamanho, p.tamanho * 0.6);
+        ctx.restore();
+      });
+
+      if (decorrido < DURACAO_MS) {
+        requestAnimationFrame(quadro);
+      } else {
+        clearTimeout(limpezaGarantida);
+        canvas.remove();
+      }
+    }
+
+    requestAnimationFrame(quadro);
+  }
+
   function exibirFeedback(acertou, pergunta, pontosGanhos) {
     els.cardFeedback.hidden = false;
     els.cardFeedback.classList.add(acertou ? "card-feedback--correto" : "card-feedback--incorreto");
@@ -210,6 +268,7 @@ const App = (function () {
     els.pontosRodada.hidden = !acertou;
     if (acertou) {
       els.pontosRodada.textContent = `+${pontosGanhos} pontos`;
+      dispararConfetes();
     }
 
     els.placar.textContent = `Pontos: ${estado.pontos}`;
